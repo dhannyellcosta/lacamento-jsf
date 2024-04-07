@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />	
+	<link rel="stylesheet" href="#{request.contextPath}/resources/sbadmin/vendor/fontawesome-free/css/all.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"	rel="stylesheet" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/sbadmin/css/sb-admin-2.min.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css" />
+	<title>CADASTRO JSF</title>
+</h:head>
+
+<h:body>
+	
+	<div id="wrapper">
+	
+		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+		
+			<div class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </div>
+			
+			<hr class="sidebar-divider my-0" />
+			
+			<h:form>
+				<li class="nav-item">
+	                <h:commandLink class="nav-link" action="/index.jsf?faces-redirect=true">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Home</span>
+	                </h:commandLink>
+	            </li>
+	            
+				<li class="nav-item">
+	                <h:commandLink class="nav-link" action="/paginas/admin/pessoa.jsf?faces-redirect=true" rendered="#{pessoaBean.permiteAcesso('admin')}">
+	                    <i class="fas fa-fw fa-user-plus"></i>
+	                    <span>Cadastrar usuário</span>
+	                </h:commandLink>
+	            </li>
+	            
+	            <li class="nav-item">
+	                <h:commandLink class="nav-link" action="/paginas/lancamento.jsf?faces-redirect=true">
+	                    <i class="fas fa-fw fa-layer-group"></i>
+	                    <span>Cadastrar lançamento</span>
+	                </h:commandLink>
+	            </li>
+	            
+	            <li class="nav-item">
+	                <h:commandLink class="nav-link" action="#{pessoaBean.logout}">
+	                    <i class="fas fa-fw fa-sign-out-alt"></i>
+	                    <span>Sair</span>
+	                </h:commandLink>
+	            </li>
+            </h:form>
+            
+			 <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+			 
+		</ul>
+	
+		<div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+				<ui:insert name="conteudo"></ui:insert>
+            </div>
+        </div>
+		
+	
+	</div>
+	
+	<script src="#{request.contextPath}/resources/sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js"/>
+	<script src="#{request.contextPath}/resources/sbadmin/js/sb-admin-2.min.js"/>
+
+</h:body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />	
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/sbadmin/vendor/fontawesome-free/css/all.min.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/sbadmin/css/sb-admin-2.min.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css" />
+	<title>Cadastro jsf</title>
+</h:head>
+
+<body class="bg-gradient-primary">
+	<div class="container">
+		<h:form id="formLogin">
+			 <div class="row justify-content-center">
+           		<div class="col-xl-10 col-lg-12 col-md-9">
+           			<div class="card o-hidden border-0 shadow-lg my-5">
+	           			<div class="card-body p-0">
+	           				<div class="row" style="min-height: 600px;">
+	                          	<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                          		<div class="col-lg-6">
+                          			<div class="p-5">
+                          				<div class="text-center">
+	                                       <h1 class="h4 text-gray-900 mb-4">Bem vindo!</h1>
+	                                    </div>
+	                                    <div class="form-group">
+											<p:inputText id="login" 
+														 value="#{pessoaBean.pessoa.login}" 
+														 placeholder="Digite seu login" 
+														 styleClass="form-control input-altura block"
+														 style="border-radius: 10rem;"/>
+											<p:message for="login" />
+										</div>
+										<div class="form-group">
+											<p:password id="senha" 
+														redisplay="true"
+														value="#{pessoaBean.pessoa.senha}" 
+														placeholder="Digite sua senha" 
+														styleClass="form-control input-altura"
+														style="border-radius: 10rem;"/>
+											<p:message for="senha" />
+	                           			</div>
+	                           			<div style="margin-top: 8px;">
+											<p:commandButton value="Acessar" 
+															 styleClass="btn btn-block rounded-button" 
+															 action="#{pessoaBean.logar}" 
+															 update="formLogin"/>
+											<p:messages showDetail="true" globalOnly="true"/>
+										</div>
+									</div>
+	                       		</div>
+	                      	</div>
+	           			</div>
+           			</div>
+				</div>
+			</div>
+		</h:form>	
+	</div>
+</body>
+</html>

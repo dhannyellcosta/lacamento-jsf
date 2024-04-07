@@ -1,0 +1,159 @@
+<ui:composition template="/template/layout-padrao.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+		
+	<ui:define name="conteudo">
+		<h:form id="formLancamento">
+			<p:growl id="growl" showSummary="false" showDetail="true"/>
+				<div class="card shadow ml-4 mt-4 mr-4">
+					<div class="card-header py-3">
+		                <h6 class="m-0 font-weight-bold text-primary">CADASTRO DE LANÇAMENTOS</h6>
+		            </div>
+					<div class="card-body ui-fluid row">
+						<div class="col-xl-2 col-md-6 mb-2"> 
+							<p:outputLabel value="Nota Físcal"/>
+							<p:inputText id="nota" value="#{lancamentoBean.lancamento.numeroNotaFiscal}"/>
+						</div>
+						<div class="col-xl-4 col-md-6 mb-2"> 
+							<p:outputLabel value="Naturaza da operação"/>
+							<p:inputText id="operacao" value="#{lancamentoBean.lancamento.naturezaOperacao}"/>
+						</div>
+						<div class="col-xl-3 col-md-6"> 
+							<p:outputLabel value="Origem"/>
+							<p:inputText id="origem" value="#{lancamentoBean.lancamento.empresaOrigem}"/>
+						</div>
+						<div class="col-xl-3 col-md-6"> 
+							<p:outputLabel value="Destino"/>
+							<p:inputText id="destino" value="#{lancamentoBean.lancamento.empresaDestino}"/>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<p:outputLabel value="Data emissão"/>
+							<p:datePicker value="#{lancamentoBean.lancamento.dataEmissao}" 
+										  readonlyInput="true"/>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<p:outputLabel value="Data saída"/>
+							<p:datePicker value="#{lancamentoBean.lancamento.dataSaida}" 
+										  readonlyInput="true"/>
+						</div>			
+						<div class="col-xl-3 col-md-6">
+							<p:outputLabel value="Tipo da nota"/>
+		            		<p:selectOneMenu value="#{lancamentoBean.lancamento.tipo}">
+								<f:selectItem itemLabel="--SELECIONE--" noSelectionOption="true"/>
+								<f:selectItem itemLabel="ENTRADA" itemValue="ENTRADA"/>
+								<f:selectItem itemLabel="SAÍDA" itemValue="SAIDA"/>
+							</p:selectOneMenu>
+						</div>
+						<div class="col-xl-3 col-md-6"> 
+							<p:outputLabel value="Valor da nota"/>
+							<p:inputNumber id="valor" value="#{lancamentoBean.lancamento.valorDaNota}" decimalSeparator="," thousandSeparator="."/>
+						</div>
+					</div>
+					
+					
+					<div class="row mb-4 ml-2">
+						<div class="col-xl-4 col-md-6">
+							<p:commandButton icon="pi pi-user-plus" 
+											 value="Novo" 
+											 styleClass="ui-button-raised rounded-button ui-button-secondary" 
+											 actionListener="#{lancamentoBean.novo}"
+											 update="formLancamento"
+											 process="@this"/>
+											 
+							<p:commandButton icon="pi pi-save" 
+											 value="Salvar" 
+											 styleClass="ui-button-raised rounded-button ui-button-success" 
+											 actionListener="#{lancamentoBean.salvar}"
+											 update="formLancamento formListaLancamentos"
+											 style="margin-left: 10px"/>
+						</div>
+					</div>
+				</div>
+			
+		</h:form>	
+		
+		<h:form id="formListaLancamentos">
+			<div class="card shadow ml-4 mt-4 mr-4">
+				<p:dataTable value="#{lancamentoBean.lancamentos}" var="lancamento" stripedRows="true" paginator="true" rows="8">
+					<p:column headerText="Nota Físcal">
+						<h:outputText value="#{lancamento.numeroNotaFiscal}"/>
+					</p:column>
+					
+					<p:column headerText="Natureza da operação">
+						<h:outputText value="#{lancamento.naturezaOperacao}"/>
+					</p:column>
+					
+					<p:column headerText="Empresa origem">
+						<h:outputText value="#{lancamento.empresaOrigem}"/>
+					</p:column>
+					
+					<p:column headerText="Empresa destino">
+						<h:outputText value="#{lancamento.empresaDestino}"/>
+					</p:column>
+					
+					<p:column headerText="Data emissão">
+						<h:outputText value="#{lancamento.dataEmissao}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Data saída">
+						<h:outputText value="#{lancamento.dataSaida}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Tipo da nota">
+						<h:outputText value="#{lancamento.tipo}"/>
+					</p:column>
+					
+					<p:column headerText="Valor da nota">
+						<h:outputText value="#{lancamento.valorDaNota}">
+							<f:convertNumber pattern="0.00"/>
+						</h:outputText>
+					</p:column>
+										
+					<p:column headerText="Ações" style="text-align: center; width: 8%">
+						<p:commandButton icon="pi pi-pencil" 
+										 styleClass="rounded-button ui-button-secondary" 
+										 update="formLancamento" 
+										 title="Editar"
+										 action="#{lancamentoBean.buscarPorId}">	 
+							<f:setPropertyActionListener 
+										 value="#{lancamento}" 
+										 target="#{lancamentoBean.lancamento}">
+							</f:setPropertyActionListener>
+						</p:commandButton>
+						<p:commandButton icon="pi pi-trash" 
+										 styleClass="rounded-button ui-button-danger" 
+										 update="formLancamento formListaLancamentos" 
+										 style="margin-left: 10px;"
+										 title="Excluir"
+										 action="#{lancamentoBean.deletar}">
+							<f:setPropertyActionListener 
+										 value="#{lancamento}" 
+										 target="#{lancamentoBean.lancamento}">
+							</f:setPropertyActionListener>
+							<p:confirm header="Confirmação" message="Deseja excluir o lançamento?" icon="pi pi-exclamation-triangle"/>				 
+						</p:commandButton>
+					</p:column>
+					
+				</p:dataTable>
+			</div>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+				<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"></p:commandButton>
+				<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes ui-button-flat"></p:commandButton>
+			</p:confirmDialog>
+			
+		</h:form>
+		
+		<script src="#{request.contextPath}/resources/js/datepick-pt-br.js"/>
+		
+	</ui:define>
+
+</ui:composition>

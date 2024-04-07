@@ -1,0 +1,86 @@
+body {
+	background: #F8F9FA;
+	margin: 0;
+}
+
+.espaco-campos {
+	margin-top: 10px;
+}
+
+.form-login {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	height: 100vh !important;
+}
+
+.ui-datatable .ui-datatable-header {
+	padding: 0px !important;
+}
+
+.form-cadastro {
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+	width: 200vh;
+}
+
+.card-menu {
+	height: 500px;
+	width: 200px;
+}
+
+.ui-button {
+    font-size: small !important;
+}
+
+.ui-inputfield {
+    font-size: small !important;
+}
+
+.ui-fileupload-simple .ui-button {
+	border-radius: 40px !important;
+}
+
+.ui-fileupload-upload {
+	display: none !important;
+}
+
+.ui-datatable .ui-paginator.ui-paginator-top {
+	display: none !important;
+}
+
+.form-group .input-altura {
+	height: 45px;
+}
+
+#formLogin .ui-message.ui-message-error {
+	background: #fff;
+	border: none;
+	color: red;
+	font-size: 12px;
+}
+
+#formLogin .ui-message {
+	padding: 0;
+}
+
+#formLogin .ui-message.ui-message-error .ui-message-error-icon {
+	color: red;
+}
+
+#formLogin .form-group {
+	margin-bottom: 5px;
+}
+
+#formLogin .ui-messages>div {
+	padding: 10px !important;
+}
+
+#formLogin .ui-messages .ui-messages-error .ui-messages-error-icon {
+	margin-top: -5px !important;
+}
+
+#formLogin .ui-messages .ui-messages-warn .ui-messages-warn-icon {
+	margin-top: -5px !important;
+}
